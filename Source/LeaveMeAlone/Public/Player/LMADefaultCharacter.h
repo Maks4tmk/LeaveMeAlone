@@ -10,6 +10,7 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class ULMAHealthComponent;
 
 
 UCLASS()
@@ -21,7 +22,7 @@ class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
 
 	/*PROPERTIES*/
 public:
-	// Sets default values for this character's properties
+
 	ALMADefaultCharacter();
 
 protected:
@@ -49,6 +50,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CameraScaling")
 	float ZoomStep = 100.0f;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Health")
+	ULMAHealthComponent* HealthComponent;
+
 private:
 	float YRotation = -75.0f;
 	float ArmLength = 1400.0f;
@@ -58,14 +62,13 @@ private:
 
 	/*METHODS*/
 public:	
-	// Called every frame
+
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
-	// Called when the game starts or when spawned
+
 	virtual void BeginPlay() override;
 
 private:
