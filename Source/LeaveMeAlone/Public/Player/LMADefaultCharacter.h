@@ -11,6 +11,8 @@
 class USpringArmComponent;
 class UCameraComponent;
 class ULMAHealthComponent;
+class ULMAStaminaComponent;
+class UAnimMontage;
 
 
 UCLASS()
@@ -18,12 +20,18 @@ class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-
-
 	/*PROPERTIES*/
 public:
 
 	ALMADefaultCharacter();
+
+	UFUNCTION()
+	ULMAHealthComponent* GetHealthComponent() const { return HealthComponent; }
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sprint")
+	float MoveSpeed = 300.0f;
+
+
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
@@ -53,10 +61,24 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Health")
 	ULMAHealthComponent* HealthComponent;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UAnimMontage* DeathMontage;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Stamina")
+	ULMAStaminaComponent* StaminaComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sprint")
+	float MaxSpeed = 600.0f;
+
+
+
 private:
 	float YRotation = -75.0f;
 	float ArmLength = 1400.0f;
 	float FOV = 55.0f;
+
+	bool IsSprint;
+
 
 
 
@@ -67,13 +89,27 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+
 protected:
 
 	virtual void BeginPlay() override;
 
+
+
 private:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
+
 	void ZoomCamera_Out();
 	void ZoomCamera_In();
+
+	void StartSprint();
+	void EndSprint();
+
+	void OnDeath();
+	void RotationPlayerOnCursor();
+
+	void OnHealthChanged(float NewHealth);
+	void OnStaminaChanged(float NewStamina);
 };
