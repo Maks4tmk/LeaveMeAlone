@@ -13,6 +13,7 @@ class UCameraComponent;
 class ULMAHealthComponent;
 class ULMAStaminaComponent;
 class UAnimMontage;
+class ULMAWeaponComponent;
 
 
 UCLASS()
@@ -69,6 +70,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sprint")
 	float MaxSpeed = 600.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	ULMAWeaponComponent* WeaponComponent;
 
 
 
