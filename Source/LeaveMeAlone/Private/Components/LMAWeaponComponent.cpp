@@ -84,6 +84,16 @@ bool ULMAWeaponComponent::CanReload() const
 	return !AnimReloading && Weapon->CanReload();
 }
 
+bool ULMAWeaponComponent::GetCurrentWeaponAmmo(FAmmoWeapon& AmmoWeapon) const
+{
+	if (Weapon)
+	{
+		AmmoWeapon = Weapon->GetCurrentAmmoWeapon();
+		return true;
+	}
+	return false;
+}
+
 void ULMAWeaponComponent::Reload()
 {
 	ChangeClip();

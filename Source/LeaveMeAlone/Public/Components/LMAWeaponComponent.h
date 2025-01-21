@@ -19,10 +19,15 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void StartFire();
+
+	UFUNCTION(BlueprintCallable)
 	void StopFire();
 
 	void Reload();
 	bool CanReload() const;
+
+	UFUNCTION(BlueprintCallable)
+	bool GetCurrentWeaponAmmo(FAmmoWeapon& AmmoWeapon) const;
 
 protected:
 	virtual void BeginPlay() override;

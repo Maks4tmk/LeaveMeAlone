@@ -36,7 +36,11 @@ public:
 
 	FOnClipEmptySignature OnClipEmpty;
 
+	FAmmoWeapon GetCurrentAmmoWeapon() const { return CurrentAmmoWeapon; }
+
 	void StartFire();
+
+	UFUNCTION(BlueprintCallable)
 	void StopFire();
 
 	void ChangeClip();
