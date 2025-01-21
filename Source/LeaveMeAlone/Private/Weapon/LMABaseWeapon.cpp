@@ -4,7 +4,6 @@
 #include "Weapon/LMABaseWeapon.h"
 #include "Components/SkeletalMeshComponent.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogWeapon, All, All);
 
 ALMABaseWeapon::ALMABaseWeapon()
 {
@@ -49,7 +48,6 @@ void ALMABaseWeapon::Shot() {
 
 void ALMABaseWeapon::DecrementBullets() {
 	CurrentAmmoWeapon.Bullets--;
-	UE_LOG(LogWeapon, Display, TEXT("Bullets = %s"), *FString::FromInt(CurrentAmmoWeapon.Bullets));
 
 	if (IsCurrentClipEmpty()){
 		StopFire();

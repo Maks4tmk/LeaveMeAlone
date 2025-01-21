@@ -54,12 +54,8 @@ void ALMADefaultCharacter::BeginPlay()
 		CurrentCursor = UGameplayStatics::SpawnDecalAtLocation(GetWorld(), CursorMaterial, CursorSize, FVector());
 	}
 
-	OnHealthChanged(HealthComponent->GetHealth());
 	HealthComponent->OnDeath.AddUObject(this, &ALMADefaultCharacter::OnDeath);
-	HealthComponent->OnHealthChanged.AddUObject(this, &ALMADefaultCharacter::OnHealthChanged);
 	
-	OnStaminaChanged(StaminaComponent->GetStamina());
-	StaminaComponent->OnStaminaChanged.AddUObject(this, &ALMADefaultCharacter::OnStaminaChanged);
 }
 
 
@@ -162,11 +158,4 @@ void ALMADefaultCharacter::RotationPlayerOnCursor()
 	}
 }
 
-void ALMADefaultCharacter::OnHealthChanged(float NewHealth) {
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Health = %f"), NewHealth));
-}
-
-void ALMADefaultCharacter::OnStaminaChanged(float NewStamina) {
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, FString::Printf(TEXT("Stamina = %f"), NewStamina));
-}
 

@@ -114,6 +114,4 @@ private:
 	void OnDeath();
 	void RotationPlayerOnCursor();
 
-	void OnHealthChanged(float NewHealth);
-	void OnStaminaChanged(float NewStamina);
 };
